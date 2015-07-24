@@ -1,0 +1,44 @@
+Login With Linkedin
+
+Extension :"happyr/linkedin-api-client": "dev-master",
+
+use Happyr\LinkedIn\LinkedIn;
+
+
+public function linkAction()
+    {
+        $linkedIn=new LinkedIn('75jag8dlb1rjy1', '85HHtC2YgzH72UJR');
+        if ($linkedIn->isAuthenticated()) {
+    //we know that the user is authenticated now. Start query the API
+    $user=$linkedIn->get('v1/people/~:(firstName,lastName,id)');
+    echo "Welcome ".$user['firstName'].$user['lastName'].$user['id'];
+  
+        exit();
+    } elseif ($linkedIn->hasError()) {
+        echo "User canceled the login.";
+        exit();
+    }
+
+//if not authenticated
+$url = $linkedIn->getLoginUrl();
+echo "<a href='$url'>Login with LinkedIn</a>";
+
+
+In the Redirect Uri Set:
+http://bwcmultimedia.com/PS/KK/Symfony/web/app_dev.php/link/auth/linkedin/callback
+
+Note:
+Localhost is not works here:
+
+
+
+
+
+
+
+   
+   
+    }
+
+
+
