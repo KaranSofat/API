@@ -83,3 +83,28 @@ function onLoadCallback()
  
 </body>
 </html>
+
+
+If yoy display Info then in the api part hit url:
+https://console.developers.google.com/project/pacific-vault-811/apiui/credential?authuser=0
+In the crediationals:
+
+1)Set Api
+Dont forget to enable api.
+
+For enabling api go to the google+console and enable it
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
