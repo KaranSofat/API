@@ -1,5 +1,93 @@
 Login With Linkedin
 
+==============================javascript=========================
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>LinkedIn</title>
+<meta name="description" content="LinkedIn API Tryout">
+
+<script type="text/javascript" src="http://platform.linkedin.com/in.js">
+api_key: 75op4nlgze4yes
+onLoad: onLinkedInLoad
+authorize: true
+</script>
+ <script>
+
+
+
+        function onLinkedInLoad() {
+       // alert("a");
+            IN.Event.on(IN, "auth", onLinkedInAuth);
+        }
+
+        // 2. Runs when the viewer has authenticated
+        function onLinkedInAuth() {
+
+            IN.API.Profile("me").fields("id,first-name", "last-name", "email-address,headline,picture-url").result(function (data) {
+                 
+            var fname = data.values[0].firstName;
+            alert(fname);
+            var lname = data.values[0].lastName;
+            var id = data.values[0].id;
+               
+              document.getElementById('name').value = fname; 
+              document.getElementById('lname').value = lname; 
+              document.getElementById('id').value = id; 
+              document.linkdin.submit();
+               
+              
+               
+               
+            }).error(function (data) {
+                console.log(data);
+            });
+            }
+</script>
+
+
+
+</head>
+
+<body>
+<form name="linkdin" action ="submit.php" method="post">
+<input type="hidden" name="name" id ="name">
+<input type="hidden" name="lname" id ="lname">
+<input type="hidden" name="id" id ="id">
+
+</form>
+
+
+
+</form>
+
+
+
+</body>
+</html>
+
+
+
+
+
+==================javascript===============
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Extension :"happyr/linkedin-api-client": "dev-master",
 
 use Happyr\LinkedIn\LinkedIn;
