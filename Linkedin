@@ -44,14 +44,15 @@ authorize: true
             });
             }
 </script>
-<script type="in/Login">
 
-</script>
 
 
 </head>
 
 <body>
+<script type="in/Login">
+
+</script>
 <form name="linkdin" action ="submit.php" method="post">
 <input type="hidden" name="name" id ="name">
 <input type="hidden" name="lname" id ="lname">
