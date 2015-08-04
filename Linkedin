@@ -1,5 +1,37 @@
 Login With Linkedin
 
+===========================Javascript================================
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>LinkedIn</title>
+<meta name="description" content="LinkedIn API Tryout">
+
+<script type="text/javascript" src="http://platform.linkedin.com/in.js">
+api_key: 75op4nlgze4yes
+authorize: true
+</script>
+
+</head>
+
+<body>
+<script type="in/Login">
+Hello, <?js= firstName ?> <?js= lastName ?>.
+</script>
+</body>
+</html>
+
+
+
+
+
+
+=======================Javascript==================================
+
+
+
+
+
 Extension :"happyr/linkedin-api-client": "dev-master",
 
 use Happyr\LinkedIn\LinkedIn;
