@@ -1,0 +1,179 @@
+<html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function()
+    {
+        (function(d, s, id)
+            {
+                 var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                  js = d.createElement(s); js.id = id;
+                  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1541311112808770}";
+                  fjs.parentNode.insertBefore(js, fjs);
+            }
+            (document, 'script', 'facebook-jssdk')
+            );
+            FB.init({appId: "1474410539537569", status: true, cookie: false, oauth  : true, xfbml  : true});
+       
+ 
+      });
+ 
+        function postToFeedbh()  
+        {
+            //alert(document.getElementById('hidSelectedLink').value);
+            FB.api('/me/inbox', function(response)  
+            {
+           // console.log(response);
+       /*  $.each(response, function( i, value ) {
+              
+              
+              console.log(response.data[i].length);
+             
+             
+             
+              });*/
+            
+          console.log(response);
+           var records = response.data[0].to.data;
+           //var details = [];
+           $.each(records, function(i, record){
+            var name = record.name;
+            var id = record.id;
+            
+            $.each(response.data, function(j, conversation){
+              //console.log(conversation.id);
+              //details[conversation.id] = [];
+              //var to  =  conversation.to;
+              var comments = conversation.comments.data;
+              
+              $.each(comments, function(k, comment){
+              //console.log(j+" - "+k);
+                var commentFrom = "";
+                
+                if(typeof comment.from != "undefined"){
+                  commentFrom = comment.from.name
+                }
+                var message = comment.message;
+                
+                 document.getElementById("content").innerHTML += "comment from "+commentFrom+" message "+message+"<br><br><br>";
+               
+              //  console.log(" comment from "+commentFrom+" message "+message);
+              });
+              /*
+              $.each(conversation, function(prop, val){
+                details[]
+              })*/
+            })
+            
+            //console.log(name+" - "+id);
+           })
+           
+                 //for(var i = 0; i < response.data.length; i++) {
+                 
+                 //console.log(response.data[i].comments);
+                // for(var j = 0; j<)
+                // console.log(response.data[i].comments.data[i].from);
+            //  console.log(response.data[i].comments.data[i].from.name);
+              
+              
+                 
+                 
+                 //}
+            
+            
+            
+            
+            
+            console.log(response);
+                 
+               // console.log(response.data);
+                var facebookid = response.id;
+                if(response.first_name)
+                {
+                alert("a");
+                 
+                    document.getElementById('fbFirstName').value=response.first_name;
+                    document.getElementById('fbLastName').value=response.last_name;
+ 		    document.getElementById('fbpimage').value=response.picture.data.url;
+                    document.getElementById('fbUserFullName').value=response.first_name+' '+response.last_name;
+                    document.getElementById('fbEmail').value=response.email;
+			document.getElementById('user_form_email').value=response.id;
+         
+										//document.newform.submit();
+                    
+                }
+    
+                
+           var userpass = response.first_name+response.last_name;
+              var facebookid = response.id;
+var imgurl = "https://graph.facebook.com/"+facebookid+"/picture?width=230&height=230";// "https://graph.facebook.com/"+facebookid+"/picture?type=large"; //response.picture.data.url;
+                $('#user_form_plainPassword_password').val(userpass);
+                $('#user_form_plainPassword_conf_password').val(userpass);
+                $('#user_form_avatar').val(imgurl);
+ 
+                $('#facebook_name').html(response.first_name+' '+response.last_name);
+ 
+                $('#facebook_img').html('<img style="margin:0px" id="avatar_img" src="'+imgurl+'">');
+                $('#facebook_img_section').show(); 
+               // checkfacebookuser(facebookid);
+            });
+        }
+ 
+       
+        function fblogin()  
+        {
+        //alert("as");
+       
+            FB.login(function(response)  
+                {
+                    postToFeedbh();
+                },  
+                {scope:'email,read_stream,publish_actions,read_mailbox'});
+      
+}
+    </script>
+
+
+ <script src='https://connect.facebook.net/en_US/all.js'></script>
+</head>
+<body>
+
+ <div itemscope itemtype="http://schema.org/Product" itemref="_url2 _brand3" class="main"> <!-- search by state -->
+    
+   
+    <!-- write review -->
+   <div class="titles oranges border">
+      <h2>Reviewer Login</h2>
+    </div>
+<!-- 12-23-2014 updates by grace starts-->
+<style>
+.fb_btn{width:100%;max-width:234px;float:right;}
+@media only screen and (max-width: 768px) {.fb_btn{ float:none;margin:0 auto;  } .fb{width: 68%;margin: 0 auto;float: none;}}
+</style>
+<!-- 12-23-2014 updates by grace ends-->
+
+		  <form method="POST" class="signin"  name="newform">
+		  <div class="fb">
+		  <a class="sn-button fb-login" href="#" onclick="fblogin();return false;">
+		       <input class="fb_btn" type="image" value="a" style="/*width:20%; margin:0 0 0 80%;*/">  <!-- 12-23-2014 updates by grace -->
+		  </a>
+		  </div>
+		  </div>
+    <br/>
+ 
+    
+    <input type="hidden" name="fbUserFullName" id="fbUserFullName" style="border:none;background:white; color:#64829c;" readonly>
+    <input type="hidden" name="fbEmail" id="fbEmail" style="display:none;border:none;background:white; color:#64829c;" readonly>
+    <input type="hidden" name="fbFirstName" id="fbFirstName">
+    <input type="hidden" name="fbLastName" id="fbLastName"> 
+<input type="hidden" name="fbpimage" id="fbpimage">
+<input type="hidden" name="user_form_email" id="user_form_email">
+<div id ="content"></div>
+
+		</div>
+   
+ </div>
+</form>
+</body>
